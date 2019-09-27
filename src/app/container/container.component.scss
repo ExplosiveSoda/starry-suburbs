@@ -1,0 +1,14 @@
+
+.sidenav {
+  // background-color: rgba($color: red, $alpha: 0.3);
+  width: 20%;
+  height: 100vh;
+  float: left;
+}
+
+.main {
+  background-color: rgba($color: rgb(181, 0, 197), $alpha: 0.3);
+  width: 80%;
+  height: 100vh;
+  float: right;
+}
