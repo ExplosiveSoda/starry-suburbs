@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
   calculateWidth() {
     const removeFromWidth = this.screenWidth * 0.2;
     this.screenWidth = this.screenWidth - removeFromWidth;
-    this.screenWidth = this.screenWidth * 0.6;
+    this.screenWidth = this.screenWidth * 0.65;
   }
 
 }
