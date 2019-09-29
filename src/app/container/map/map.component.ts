@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { latLng, tileLayer, imageOverlay, latLngBounds } from 'leaflet';
 
 @Component({
   selector: 'app-map',
@@ -8,6 +9,33 @@ import { Component, OnInit } from '@angular/core';
 export class MapComponent implements OnInit {
   public screenHeight: number;
   public screenWidth: number;
+
+  public imageBounds = latLngBounds([[40.712216, -74.22655], [40.773941, -74.12544]]);
+  public imgOverlay = imageOverlay('../../../assets/images/1030.jpg', this.imageBounds);
+
+  options = {
+    layers: [
+      tileLayer('../../../assets/images/1030.jpg', {
+        maxZoom: 18,
+        noWrap: true
+      })
+    ],
+    zoom: 7,
+    center: latLng([ 46.879966, -121.726909 ])
+  };
+
+  layersControl = {
+    baseLayers: {
+      SeasonX: tileLayer('../../../assets/images/1030.jpg',
+      {
+        maxZoom: 18
+      })
+    },
+    // overlays: {
+    //   'Image Overlay': this.imgOverlay
+    // }
+  };
+
   constructor() { }
 
   ngOnInit() {

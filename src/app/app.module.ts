@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { ContainerComponent } from './container/container.component';
 import { SidebarComponent } from './container/sidebar/sidebar.component';
 import { MapComponent } from './container/map/map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MapComponent } from './container/map/map.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    LeafletModule
   ],
   providers: [],
   bootstrap: [AppComponent]
