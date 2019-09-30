@@ -9,8 +9,15 @@ html, body {
     padding: 0;
   }
 
-  // .leaflet-tooltip.my-labels {
-  //   background-color: transparent;
-  //   border: transparent;
-  //   box-shadow: none;
-  //   }
+  .leaflet-tooltip.my-labels {
+    background-color: transparent;
+    border: transparent;
+    box-shadow: none;
+    size: 35px;
+    color: white;
+    text-shadow:
+    1px  1px 2px black,
+    1px -1px 2px black,
+   -1px  1px 2px black,
+   -1px -1px 2px black;
+    }
