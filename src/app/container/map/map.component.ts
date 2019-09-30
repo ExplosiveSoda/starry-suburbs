@@ -11,6 +11,8 @@ import { Title } from '@angular/platform-browser';
 export class MapComponent implements OnInit {
   public screenHeight: number;
   public screenWidth: number;
+  public tempWidth: number;
+  public tempHeight: number;
 
   // public imageBounds = latLngBounds([[40.712216, -74.22655], [40.773941, -74.12544]]);
   // public imgOverlay = imageOverlay('../../../assets/images/1030.jpg', this.imageBounds);
@@ -71,14 +73,46 @@ export class MapComponent implements OnInit {
     //   .setLatLng([ 7500, 7500 ])
     //   .setContent('<p>Hello world!<br />This is a nice popup.</p>')
     //   .openOn(map);
+
+
+    // map.on('dragend', function onDragEnd(){
+    //   const width = map.getBounds().getEast() - map.getBounds().getWest();
+    //   const height = map.getBounds().getNorth() - map.getBounds().getSouth();
+
+    //   alert (
+    //       'center:' + map.getCenter() +'\n'+
+    //       'width:' + width +'\n'+
+    //       'height:' + height +'\n'+
+    //       'size in pixels:' + map.getSize()
+    //   )});
+
+    map.on('click', function(ev: any) {
+      this.tempWidth = ev.latlng.lat;
+      this.tempHeight = ev.latlng.lng;
+
+      alert (
+          'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
+      );
+    });
+
+    const bottomLeft = map.getPixelBounds().getBottomLeft();
+    const topRight = map.getPixelBounds().getTopRight();
+    const pixelMiddle = map.getPixelBounds().getCenter();
+    const middle = map.getCenter();
+    const width = map.getBounds().getEast() - map.getBounds().getWest();
+    const height = map.getBounds().getNorth() - map.getBounds().getSouth();
+    const widthPercentage = 7200 / 7995;
+    const heightPercentage = 5250 / 7995;
+    const newWidth = widthPercentage * width;
+    const newHeight = heightPercentage * height;
     const testIcon = L.icon({
       iconUrl: '../../../assets/images/leaf-green.png',
-      iconAnchor: [7200, 5250]
+      iconAnchor: [7472, 5312]
     });
-    const marker = L.marker([7200, 5250], { icon: testIcon, opacity: 0.01 });
+    const marker = L.marker([7472, 5312], { icon: testIcon, opacity: 0.01 });
     marker.bindTooltip('Gotham City', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
     marker.addTo(map);
-    map.setView( [7500, 7500], -4);
+    map.setView( middle, -4);
   }
 
   // for zooming
