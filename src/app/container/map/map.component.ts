@@ -62,7 +62,7 @@ export class MapComponent implements OnInit {
     const bounds = L.latLngBounds([[0, 0], [15000, 15000]]);
     const image = L.imageOverlay('../../../assets/images/1030.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
-    const sol = L.latLng([ 7500, 7500 ]);
+    // const sol = L.latLng([ 7500, 7500 ]);
     // L.marker(sol).addTo(map);
     // L.marker(sol, {
     //   title: 'test'
@@ -71,7 +71,11 @@ export class MapComponent implements OnInit {
     //   .setLatLng([ 7500, 7500 ])
     //   .setContent('<p>Hello world!<br />This is a nice popup.</p>')
     //   .openOn(map);
-    const marker = L.marker([7200, 5250], { opacity: 0.01 });
+    const testIcon = L.icon({
+      iconUrl: '../../../assets/images/leaf-green.png',
+      iconAnchor: [7200, 5250]
+    });
+    const marker = L.marker([7200, 5250], { icon: testIcon, opacity: 0.01 });
     marker.bindTooltip('Gotham City', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
     marker.addTo(map);
     map.setView( [7500, 7500], -4);
