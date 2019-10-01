@@ -59,7 +59,8 @@ export class MapComponent implements OnInit {
     const map = L.map('leafletmap', {
       crs: L.CRS.Simple,
       minZoom: -6,
-      maxZoom: 0
+      maxZoom: -1,
+      attributionControl: false
     });
     const bounds = L.latLngBounds([[0, 0], [15000, 15000]]);
     const image = L.imageOverlay('../../../assets/images/1030.jpg', bounds).addTo(map);
@@ -94,6 +95,12 @@ export class MapComponent implements OnInit {
           'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
       );
     });
+    map.addControl(
+      L.control.attribution({
+        position: 'bottomright',
+        prefix: 'Not affiliated with Epic Games'
+      })
+    );
 
     const bottomLeft = map.getPixelBounds().getBottomLeft();
     const topRight = map.getPixelBounds().getTopRight();
