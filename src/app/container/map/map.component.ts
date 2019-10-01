@@ -58,11 +58,11 @@ export class MapComponent implements OnInit {
   makeMap() {
     const map = L.map('leafletmap', {
       crs: L.CRS.Simple,
-      minZoom: -6,
+      minZoom: -5,
       maxZoom: -1,
       attributionControl: false
     });
-    const bounds = L.latLngBounds([[0, 0], [15000, 15000]]);
+    const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
     const image = L.imageOverlay('../../../assets/images/1030.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
     // const sol = L.latLng([ 7500, 7500 ]);
@@ -114,9 +114,9 @@ export class MapComponent implements OnInit {
     const newHeight = heightPercentage * height;
     const testIcon = L.icon({
       iconUrl: '../../../assets/images/leaf-green.png',
-      iconAnchor: [7472, 5312]
+      iconAnchor: [10008, 6986]
     });
-    const marker = L.marker([7472, 5312], { icon: testIcon, opacity: 0.01 });
+    const marker = L.marker([10008, 6986], { icon: testIcon, opacity: 0.01 });
     marker.bindTooltip('Gotham City', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
     marker.addTo(map);
     map.setView( middle, -4);
