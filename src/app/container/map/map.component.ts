@@ -60,7 +60,8 @@ export class MapComponent implements OnInit {
       crs: L.CRS.Simple,
       minZoom: -5,
       maxZoom: -1,
-      attributionControl: false
+      attributionControl: false,
+      zoomControl: false
     });
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
     const image = L.imageOverlay('../../../assets/images/1030.jpg', bounds).addTo(map);
@@ -101,6 +102,18 @@ export class MapComponent implements OnInit {
         prefix: 'Not affiliated with Epic Games'
       })
     );
+    map.addControl(
+      L.control.zoom({
+        position: 'topright'
+      })
+    );
+    // map.addControl(
+    //   L.control.extend({
+    //     options: {
+    //       position: 'topleft'
+    //     }
+    //   })
+    // );
 
     const bottomLeft = map.getPixelBounds().getBottomLeft();
     const topRight = map.getPixelBounds().getTopRight();
@@ -117,7 +130,7 @@ export class MapComponent implements OnInit {
       iconAnchor: [10008, 6986]
     });
     const marker = L.marker([10008, 6986], { icon: testIcon, opacity: 0.01 });
-    marker.bindTooltip('Gotham City', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
+    marker.bindTooltip('GOTHAM CITY', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
     marker.addTo(map);
     map.setView( middle, -4);
   }

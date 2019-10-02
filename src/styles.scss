@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+// @import '~../node_modules/font-awesome/css/font-awesome.css';
+
 body {
     background-color: #2c3441;
 }
@@ -7,17 +9,30 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-  }
+}
 
-  .leaflet-tooltip.my-labels {
-    background-color: transparent;
-    border: transparent;
-    box-shadow: none;
-    size: 40px;
-    color: white;
-    text-shadow:
-    1px  1px 2px black,
-    1px -1px 2px black,
-   -1px  1px 2px black,
-   -1px -1px 2px black;
-    }
+.leaflet-tooltip.my-labels {
+  background-color: transparent;
+  border: transparent;
+  box-shadow: none;
+  size: 40px;
+  color: white;
+  text-shadow:
+  1px  1px 2px black,
+  1px -1px 2px black,
+  -1px  1px 2px black,
+  -1px -1px 2px black;
+}
+
+.leaflet-touch .leaflet-bar a {
+   background-color: #bada55;
+}
+
+.leaflet-bar a.leaflet-disabled {
+  background-color: #bada55;
+  color: #bbb;
+}
+
+// .leaflet-bar a:hover {
+//   background-color: #bada55;
+// }
