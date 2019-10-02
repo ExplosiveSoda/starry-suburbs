@@ -1,7 +1,7 @@
 # StarrySuburbs
 For building https://alligator.io/angular/deploying-angular-app-github-pages/
 ng build --prod --base-href "https://starrysuburbs.com"
-ngh --dir dist/starry-suburbs
+ngh --dir dist/starry-suburbs --cname starrysuburbs.com
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.0.
 
