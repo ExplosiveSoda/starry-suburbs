@@ -4,9 +4,9 @@
 <div class="header">
   <app-header></app-header>
 </div>
-<div class="sidenav">
-    <app-sidebar></app-sidebar>
+<div class="sidenav" id="sidenav">
+    <app-sidebar [sidenavToggle]="sidenavToggle"></app-sidebar>
 </div>
-<div class="main">
-  <app-map></app-map>
+<div class="main" id="main">
+  <app-map [sidenavToggle]="sidenavToggle"></app-map>
 </div>

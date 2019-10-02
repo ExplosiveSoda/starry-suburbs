@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import * as L from 'leaflet';
 import { Title } from '@angular/platform-browser';
 // import { latLng, tileLayer, imageOverlay, latLngBounds } from 'leaflet';
@@ -9,6 +9,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
+  @Input() sidenavToggle: boolean;
   public screenHeight: number;
   public screenWidth: number;
   public tempWidth: number;
@@ -47,6 +48,18 @@ export class MapComponent implements OnInit {
     this.screenWidth = window.innerWidth;
     this.calculateWidth();
     this.makeMap();
+  }
+
+  toggle() {
+    if (this.sidenavToggle === false) {
+      document.getElementById('sidenav').style.width = '0';
+      document.getElementById('main').style.width = '100%';
+      this.sidenavToggle = true;
+    } else {
+      document.getElementById('sidenav').style.width = '15%';
+      document.getElementById('main').style.width = '85%';
+      this.sidenavToggle = false;
+    }
   }
 
   calculateWidth() {
@@ -92,9 +105,9 @@ export class MapComponent implements OnInit {
       this.tempWidth = ev.latlng.lat;
       this.tempHeight = ev.latlng.lng;
 
-      alert (
-          'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
-      );
+      // alert (
+      //     'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
+      // );
     });
     map.addControl(
       L.control.attribution({

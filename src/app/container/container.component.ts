@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./container.component.scss']
 })
 export class ContainerComponent implements OnInit {
-
+  public sidenavToggle = false;
   constructor() { }
 
   ngOnInit() {
+    const x = this.sidenavToggle;
   }
 
 }
