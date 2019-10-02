@@ -79,6 +79,9 @@ export class MapComponent implements OnInit {
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
     const image = L.imageOverlay('../../../assets/images/1030.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
+    // below bounces image back to middle
+    //map.setMaxBounds(map.getBounds());
+
     // const sol = L.latLng([ 7500, 7500 ]);
     // L.marker(sol).addTo(map);
     // L.marker(sol, {
