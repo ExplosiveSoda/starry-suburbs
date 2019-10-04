@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as L from 'leaflet';
 import { Title } from '@angular/platform-browser';
+import { POI } from 'src/app/shared/data/poi';
 // import { latLng, tileLayer, imageOverlay, latLngBounds } from 'leaflet';
 
 @Component({
@@ -14,6 +15,7 @@ export class MapComponent implements OnInit {
   public screenWidth: number;
   public tempWidth: number;
   public tempHeight: number;
+  public pois = POI;
 
   // public imageBounds = latLngBounds([[40.712216, -74.22655], [40.773941, -74.12544]]);
   // public imgOverlay = imageOverlay('../../../assets/images/1030.jpg', this.imageBounds);
@@ -77,7 +79,7 @@ export class MapComponent implements OnInit {
       zoomControl: false
     });
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
-    const image = L.imageOverlay('../../../assets/images/1030.jpg', bounds).addTo(map);
+    const image = L.imageOverlay('../../../assets/images/1031.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
     // below bounces image back to middle
     //map.setMaxBounds(map.getBounds());
@@ -141,13 +143,38 @@ export class MapComponent implements OnInit {
     const heightPercentage = 5250 / 7995;
     const newWidth = widthPercentage * width;
     const newHeight = heightPercentage * height;
-    const testIcon = L.icon({
-      iconUrl: '../../../assets/images/leaf-green.png',
-      iconAnchor: [10008, 6986]
+    // const testIcon = L.icon({
+    //   iconUrl: '../../../assets/images/leaf-green.png',
+    //   iconAnchor: [10008, 6986]
+    // });
+    // const marker = L.marker([10008, 6986], { icon: testIcon, opacity: 0.01 });
+    // marker.bindTooltip('GOTHAM CITY', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
+    // marker.addTo(map);
+
+
+
+    this.pois.forEach(poi => {
+      const poiIcon = L.icon({
+        iconUrl: '../../../assets/images/leaf-green.png',
+        iconAnchor: poi.location
+      });
+      const mapPoi = L.marker(poi.location, {
+        icon: poiIcon,
+        opacity: 0.01
+      });
+      mapPoi.bindTooltip(poi.name, {
+        permanent: true,
+        direction: 'center',
+        className: 'my-labels',
+        offset: [0, 0]
+      }).openTooltip();
+      mapPoi.addTo(map);
     });
-    const marker = L.marker([10008, 6986], { icon: testIcon, opacity: 0.01 });
-    marker.bindTooltip('GOTHAM CITY', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
-    marker.addTo(map);
+
+
+
+
+
     map.setView( middle, -4);
   }
 
