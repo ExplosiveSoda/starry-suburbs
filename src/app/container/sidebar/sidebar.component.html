@@ -1,7 +1,7 @@
 <div class="sidenav" id="sidenav">
   <ul class="list-group" *ngFor="let item of challenges">
     <li class="list-group-item list-group-item-dark">
-      <input type="checkbox" id="{{item.title}}" (change)="toggleWeekChallenges($event, item)"/><label for="{{item.title}}">Toggle</label> {{ item.title }}
+      <input type="checkbox" id="{{item.id}}" [checked]="item.isChecked" (change)="toggleWeekChallenges($event, item)"/><label for="{{item.id}}">Toggle</label> {{ item.title }}
       <span
         aria-hidden="true"
         class="fa hover"
@@ -16,7 +16,8 @@
       <ul class="list-group list-group-flush" *ngFor="let challenges of item.challenges" [collapse]="item.isCollapsed">
         <li class="list-group-item">
           <!-- <input type="checkbox" id="{{challenges.id}}" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }} -->
-          <input type="checkbox" id="{{challenges.description}}" /><label for="{{challenges.description}}">Toggle</label> {{ challenges.description }}
+          <!-- <input type="checkbox" id="{{challenges.id}}" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }} -->
+          <input type="checkbox" id="{{challenges.id}}" [checked]="challenges.isChecked" (change)="challenges.isChecked = !challenges.isChecked; updateWeekCheck(item, $event)" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }}
         </li>
       </ul>
     </li>
