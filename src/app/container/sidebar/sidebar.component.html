@@ -1,22 +1,20 @@
 <div class="sidenav" id="sidenav">
   <ul class="list-group" *ngFor="let item of challenges">
-    <li class="list-group-item list-group-item-dark">
-      <input type="checkbox" id="{{item.id}}" [checked]="item.isChecked" (change)="toggleWeekChallenges($event, item)"/><label for="{{item.id}}">Toggle</label> {{ item.title }}
+    <li class="list-group-item list-group-item-dark hover" (click)="test(item)">
+      <input type="checkbox" id="{{item.id}}" [checked]="item.isChecked" (change)="toggleWeekChallenges($event, item)" (click)="stopPropagation($event, item)" /><label for="{{item.id}}">Toggle</label> {{ item.title }}
       <span
         aria-hidden="true"
         class="fa hover"
         aria-label="Collapse"
-        (click)="item.isCollapsed = !item.isCollapsed"
+        
         [attr.aria-expanded]="!item.isCollapsed"
         [ngClass]="{
           'fa-angle-right': item.isCollapsed,
           'fa-angle-down': !item.isCollapsed
         }"
       ></span>
-      <ul class="list-group list-group-flush" *ngFor="let challenges of item.challenges" [collapse]="item.isCollapsed">
+      <ul class="list-group list-group-flush noHover" *ngFor="let challenges of item.challenges" [collapse]="item.isCollapsed" (click)="$event.stopPropagation()">
         <li class="list-group-item">
-          <!-- <input type="checkbox" id="{{challenges.id}}" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }} -->
-          <!-- <input type="checkbox" id="{{challenges.id}}" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }} -->
           <input type="checkbox" id="{{challenges.id}}" [checked]="challenges.isChecked" (change)="challenges.isChecked = !challenges.isChecked; updateWeekCheck(item, $event)" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }}
         </li>
       </ul>

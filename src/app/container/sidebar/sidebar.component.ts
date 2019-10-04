@@ -20,6 +20,19 @@ export class SidebarComponent implements OnInit {
     // this.toggle();
   }
 
+  test(item: any) {
+    item.isCollapsed = !item.isCollapsed;
+  }
+
+  stopPropagation(event: Event, item: any) {
+    event.stopPropagation();
+    item.isCollapsed = !item.isCollapsed;
+  }
+
+  stop2(event: Event, item: any) {
+    event.stopPropagation();
+  }
+
   toggle() {
     if (this.sidenavToggle === false) {
       document.getElementById('sidenav').style.width = '0';
