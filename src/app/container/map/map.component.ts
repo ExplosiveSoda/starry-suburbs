@@ -11,10 +11,6 @@ import { POI } from 'src/app/shared/data/poi';
 })
 export class MapComponent implements OnInit {
   @Input() sidenavToggle: boolean;
-  public screenHeight: number;
-  public screenWidth: number;
-  public tempWidth: number;
-  public tempHeight: number;
   public pois = POI;
 
   // public imageBounds = latLngBounds([[40.712216, -74.22655], [40.773941, -74.12544]]);
@@ -46,9 +42,6 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.screenHeight = window.innerHeight;
-    this.screenWidth = window.innerWidth;
-    this.calculateWidth();
     this.makeMap();
   }
 
@@ -64,12 +57,6 @@ export class MapComponent implements OnInit {
     }
   }
 
-  calculateWidth() {
-    const removeFromWidth = this.screenWidth * 0.2;
-    this.screenWidth = this.screenWidth - removeFromWidth;
-    this.screenWidth = this.screenWidth * 0.65;
-  }
-
   makeMap() {
     const map = L.map('leafletmap', {
       crs: L.CRS.Simple,
@@ -81,8 +68,44 @@ export class MapComponent implements OnInit {
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
     const image = L.imageOverlay('../../../assets/images/1031.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
+    map.on('click', function(ev: any) {
+      alert (
+          'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
+      );
+    });
+    map.addControl(
+      L.control.attribution({
+        position: 'bottomright',
+        prefix: 'Not affiliated with Epic Games'
+      })
+    );
+    map.addControl(
+      L.control.zoom({
+        position: 'topright'
+      })
+    );
+    const middle = map.getCenter();
+    this.pois.forEach(poi => {
+      const poiIcon = L.icon({
+        iconUrl: '../../../assets/images/leaf-green.png',
+        iconAnchor: poi.location
+      });
+      const mapPoi = L.marker(poi.location, {
+        icon: poiIcon,
+        opacity: 0.01
+      });
+      mapPoi.bindTooltip(poi.name, {
+        permanent: true,
+        direction: 'center',
+        className: 'my-labels',
+        offset: [0, 0]
+      }).openTooltip();
+      mapPoi.addTo(map);
+    });
+
+    map.setView( middle, -4);
     // below bounces image back to middle
-    //map.setMaxBounds(map.getBounds());
+    // map.setMaxBounds(map.getBounds());
 
     // const sol = L.latLng([ 7500, 7500 ]);
     // L.marker(sol).addTo(map);
@@ -106,25 +129,6 @@ export class MapComponent implements OnInit {
     //       'size in pixels:' + map.getSize()
     //   )});
 
-    map.on('click', function(ev: any) {
-      this.tempWidth = ev.latlng.lat;
-      this.tempHeight = ev.latlng.lng;
-
-      // alert (
-      //     'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
-      // );
-    });
-    map.addControl(
-      L.control.attribution({
-        position: 'bottomright',
-        prefix: 'Not affiliated with Epic Games'
-      })
-    );
-    map.addControl(
-      L.control.zoom({
-        position: 'topright'
-      })
-    );
     // map.addControl(
     //   L.control.extend({
     //     options: {
@@ -133,16 +137,15 @@ export class MapComponent implements OnInit {
     //   })
     // );
 
-    const bottomLeft = map.getPixelBounds().getBottomLeft();
-    const topRight = map.getPixelBounds().getTopRight();
-    const pixelMiddle = map.getPixelBounds().getCenter();
-    const middle = map.getCenter();
-    const width = map.getBounds().getEast() - map.getBounds().getWest();
-    const height = map.getBounds().getNorth() - map.getBounds().getSouth();
-    const widthPercentage = 7200 / 7995;
-    const heightPercentage = 5250 / 7995;
-    const newWidth = widthPercentage * width;
-    const newHeight = heightPercentage * height;
+    // const bottomLeft = map.getPixelBounds().getBottomLeft();
+    // const topRight = map.getPixelBounds().getTopRight();
+    // const pixelMiddle = map.getPixelBounds().getCenter();
+    // const width = map.getBounds().getEast() - map.getBounds().getWest();
+    // const height = map.getBounds().getNorth() - map.getBounds().getSouth();
+    // const widthPercentage = 7200 / 7995;
+    // const heightPercentage = 5250 / 7995;
+    // const newWidth = widthPercentage * width;
+    // const newHeight = heightPercentage * height;
     // const testIcon = L.icon({
     //   iconUrl: '../../../assets/images/leaf-green.png',
     //   iconAnchor: [10008, 6986]
@@ -150,32 +153,6 @@ export class MapComponent implements OnInit {
     // const marker = L.marker([10008, 6986], { icon: testIcon, opacity: 0.01 });
     // marker.bindTooltip('GOTHAM CITY', {permanent: true, direction: 'center', className: 'my-labels', offset: [0, 0] }).openTooltip();
     // marker.addTo(map);
-
-
-
-    this.pois.forEach(poi => {
-      const poiIcon = L.icon({
-        iconUrl: '../../../assets/images/leaf-green.png',
-        iconAnchor: poi.location
-      });
-      const mapPoi = L.marker(poi.location, {
-        icon: poiIcon,
-        opacity: 0.01
-      });
-      mapPoi.bindTooltip(poi.name, {
-        permanent: true,
-        direction: 'center',
-        className: 'my-labels',
-        offset: [0, 0]
-      }).openTooltip();
-      mapPoi.addTo(map);
-    });
-
-
-
-
-
-    map.setView( middle, -4);
   }
 
   // for zooming
