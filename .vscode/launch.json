@@ -7,9 +7,30 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
+            "name": "Chrome: localhost",
             "url": "http://localhost:4200",
             "webRoot": "${workspaceFolder}"
-        }
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Chrome: local IP",
+            "url": "http://10.87.144.128:4200/",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Firefox: localhost",
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "firefox",
+            "request": "launch",
+            "name": "Firefox: local IP",
+            "url": "http://10.87.144.128:4200/",
+            "webRoot": "${workspaceFolder}"
+        },
     ]
 }
