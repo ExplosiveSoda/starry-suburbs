@@ -68,7 +68,7 @@ export class MapComponent implements OnInit {
       zoomControl: false
     });
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
-    const image = L.imageOverlay('../../../assets/images/1031.jpg', bounds).addTo(map);
+    const image = L.imageOverlay('../../../assets/images/1031.png', bounds).addTo(map);
     map.fitBounds(bounds);
     map.on('click', function(ev: any) {
       this.tempWidth = ev.latlng.lat;
