@@ -68,11 +68,11 @@ export class MapComponent implements OnInit {
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
     const image = L.imageOverlay('../../../assets/images/1031.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
-    map.on('click', function(ev: any) {
-      alert (
-          'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
-      );
-    });
+    // map.on('click', function(ev: any) {
+    //   alert (
+    //       'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
+    //   );
+    // });
     map.addControl(
       L.control.attribution({
         position: 'bottomright',
