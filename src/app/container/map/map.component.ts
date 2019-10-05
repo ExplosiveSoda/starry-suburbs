@@ -12,6 +12,8 @@ import { POI } from 'src/app/shared/data/poi';
 export class MapComponent implements OnInit {
   @Input() sidenavToggle: boolean;
   public pois = POI;
+  public tempWidth: number;
+  public tempHeight: number;
 
   // public imageBounds = latLngBounds([[40.712216, -74.22655], [40.773941, -74.12544]]);
   // public imgOverlay = imageOverlay('../../../assets/images/1030.jpg', this.imageBounds);
@@ -68,11 +70,13 @@ export class MapComponent implements OnInit {
     const bounds = L.latLngBounds([[0, 0], [20000, 20000]]);
     const image = L.imageOverlay('../../../assets/images/1031.jpg', bounds).addTo(map);
     map.fitBounds(bounds);
-    // map.on('click', function(ev: any) {
-    //   alert (
-    //       'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
-    //   );
-    // });
+    map.on('click', function(ev: any) {
+      this.tempWidth = ev.latlng.lat;
+      this.tempHeight = ev.latlng.lng;
+      // alert (
+      //     'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
+      // );
+    });
     map.addControl(
       L.control.attribution({
         position: 'bottomright',
