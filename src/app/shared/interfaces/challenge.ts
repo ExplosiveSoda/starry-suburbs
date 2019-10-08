@@ -3,7 +3,7 @@ import { LatLngExpression } from 'leaflet';
 export interface Challenge {
   id: number;
   description: string;
-  location: LatLngExpression[];
+  location: any[];
   icon: string;
   isChecked: boolean;
 }

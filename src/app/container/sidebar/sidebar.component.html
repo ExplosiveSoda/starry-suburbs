@@ -1,21 +1,38 @@
 <div class="sidenav" id="sidenav">
+  <ul class="list-group" *ngFor="let item of other">
+    <li class="list-group-item list-group-item-dark hover" (click)="test(item)">
+      <input type="checkbox" id="{{item.id}}" [checked]="item.isChecked" (change)="toggleWeekChallenges($event, item)"
+        (click)="stopPropagation($event, item)" /><label for="{{item.id}}">Toggle</label> {{ item.title }}
+      <span aria-hidden="true" class="fa hover" aria-label="Collapse" [attr.aria-expanded]="!item.isCollapsed"
+        [ngClass]="{
+              'fa-angle-right': item.isCollapsed,
+              'fa-angle-down': !item.isCollapsed
+            }"></span>
+      <ul class="list-group list-group-flush noHover" *ngFor="let challenges of item.challenges"
+        [collapse]="item.isCollapsed" (click)="$event.stopPropagation()">
+        <li class="list-group-item">
+          <input type="checkbox" id="{{challenges.id}}" [checked]="challenges.isChecked"
+            (change)="challenges.isChecked = !challenges.isChecked; updateWeekCheck(item, $event)" /><label
+            for="{{challenges.id}}">Toggle</label> {{ challenges.description }}
+        </li>
+      </ul>
+    </li>
+  </ul>
   <ul class="list-group" *ngFor="let item of challenges">
     <li class="list-group-item list-group-item-dark hover" (click)="test(item)">
-      <input type="checkbox" id="{{item.id}}" [checked]="item.isChecked" (change)="toggleWeekChallenges($event, item)" (click)="stopPropagation($event, item)" /><label for="{{item.id}}">Toggle</label> {{ item.title }}
-      <span
-        aria-hidden="true"
-        class="fa hover"
-        aria-label="Collapse"
-        
-        [attr.aria-expanded]="!item.isCollapsed"
+      <input type="checkbox" id="{{item.id}}" [checked]="item.isChecked" (change)="toggleWeekChallenges($event, item)"
+        (click)="stopPropagation($event, item)" /><label for="{{item.id}}">Toggle</label> {{ item.title }}
+      <span aria-hidden="true" class="fa hover" aria-label="Collapse" [attr.aria-expanded]="!item.isCollapsed"
         [ngClass]="{
           'fa-angle-right': item.isCollapsed,
           'fa-angle-down': !item.isCollapsed
-        }"
-      ></span>
-      <ul class="list-group list-group-flush noHover" *ngFor="let challenges of item.challenges" [collapse]="item.isCollapsed" (click)="$event.stopPropagation()">
+        }"></span>
+      <ul class="list-group list-group-flush noHover" *ngFor="let challenges of item.challenges"
+        [collapse]="item.isCollapsed" (click)="$event.stopPropagation()">
         <li class="list-group-item">
-          <input type="checkbox" id="{{challenges.id}}" [checked]="challenges.isChecked" (change)="challenges.isChecked = !challenges.isChecked; updateWeekCheck(item, $event)" /><label for="{{challenges.id}}">Toggle</label> {{ challenges.description }}
+          <input type="checkbox" id="{{challenges.id}}" [checked]="challenges.isChecked"
+            (change)="challenges.isChecked = !challenges.isChecked; updateWeekCheck(item, $event)" /><label
+            for="{{challenges.id}}">Toggle</label> {{ challenges.description }}
         </li>
       </ul>
     </li>
@@ -24,18 +41,11 @@
     <li class="list-group-item list-group-item-dark">
       <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
       Gotham City
-      <span
-        aria-hidden="true"
-        class="fa"
-        aria-label="Collapse"
-        (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapseReport"
-        [ngClass]="{
+      <span aria-hidden="true" class="fa" aria-label="Collapse" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseReport" [ngClass]="{
           'fa-angle-right': isCollapsed,
           'fa-angle-down': !isCollapsed
-        }"
-      ></span>
+        }"></span>
       <div class="col col-3" id="collapseReport" [collapse]="isCollapsed">
         <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
         testing

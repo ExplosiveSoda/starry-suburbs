@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as L from 'leaflet';
 import { Title } from '@angular/platform-browser';
 import { POI } from 'src/app/shared/data/poi';
+import { ChallengeTitle } from 'src/app/shared/interfaces/challenge-title';
 // import { latLng, tileLayer, imageOverlay, latLngBounds } from 'leaflet';
 
 @Component({
@@ -11,6 +12,8 @@ import { POI } from 'src/app/shared/data/poi';
 })
 export class MapComponent implements OnInit {
   @Input() sidenavToggle: boolean;
+  @Input() challenges: ChallengeTitle[];
+  @Input() other: ChallengeTitle[];
   public pois = POI;
   public tempWidth: number;
   public tempHeight: number;
@@ -73,9 +76,9 @@ export class MapComponent implements OnInit {
     map.on('click', function(ev: any) {
       this.tempWidth = ev.latlng.lat;
       this.tempHeight = ev.latlng.lng;
-      // alert (
-      //     'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
-      // );
+      alert (
+          'width:' + this.tempWidth + '\n' + 'height:' + this.tempHeight + '\n'
+      );
     });
     map.addControl(
       L.control.attribution({
@@ -89,6 +92,31 @@ export class MapComponent implements OnInit {
       })
     );
     const middle = map.getCenter();
+    this.other.forEach(titleChallenge => {
+      if (titleChallenge.isChecked === true) {
+        titleChallenge.challenges.forEach(item => {
+          if (item.isChecked === true) {
+            item.location.forEach(location => {
+              const iconConst = L.icon({
+                iconUrl: item.icon,
+                iconAnchor: [0, 0],
+                iconSize: [500, 500]
+              });
+              const marker = L.marker(location, {
+                icon: iconConst
+              });
+              marker.bindTooltip('hoverboard', {
+                permanent: true,
+                direction: 'center',
+                className: 'my-labels',
+                offset: [0, 0]
+              }).openTooltip();
+              marker.addTo(map);
+            });
+          }
+        });
+      }
+    });
     this.pois.forEach(poi => {
       const poiIcon = L.icon({
         iconUrl: '../../../assets/images/leaf-green.png',

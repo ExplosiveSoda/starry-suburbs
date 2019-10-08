@@ -5,8 +5,8 @@
   <app-header></app-header>
 </div>
 <div class="sidenav" id="sidenav">
-    <app-sidebar [sidenavToggle]="sidenavToggle"></app-sidebar>
+    <app-sidebar [sidenavToggle]="sidenavToggle" [challenges]="challenges" [other]="other"></app-sidebar>
 </div>
 <div class="main" id="main">
-  <app-map [sidenavToggle]="sidenavToggle"></app-map>
+  <app-map [sidenavToggle]="sidenavToggle" [other]="other"></app-map>
 </div>

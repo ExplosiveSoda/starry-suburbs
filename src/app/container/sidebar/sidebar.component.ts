@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ChallengeTitle } from 'src/app/shared/interfaces/challenge-title';
 import { SeasonX } from 'src/app/shared/data/season-x/season-x';
 import { Challenge } from 'src/app/shared/interfaces/challenge';
+import { Other } from 'src/app/shared/data/Season-X/other';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,9 +11,10 @@ import { Challenge } from 'src/app/shared/interfaces/challenge';
 })
 export class SidebarComponent implements OnInit {
   @Input() sidenavToggle: boolean;
+  @Input() challenges: ChallengeTitle[];
+  @Input() other: ChallengeTitle[];
   public isCollapsed = true;
   events = [];
-  public challenges = SeasonX;
 
   constructor() { }
 
