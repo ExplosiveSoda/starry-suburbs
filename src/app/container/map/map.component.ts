@@ -47,7 +47,7 @@ export class MapComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.makeMap();
+    // this.makeMap();
   }
 
   toggle() {

@@ -11,7 +11,7 @@ export const Other: ChallengeTitle[] = [
                 id: 1000,
                 description: 'Hoverboards',
                 location: [
-                    [18141, 4902],
+                    [18141, 4904],
                     [14760, 6338],
                     [11915, 4502],
                 ],
