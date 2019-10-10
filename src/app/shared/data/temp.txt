@@ -1,0 +1,20 @@
+challengeContainer {
+  id: number;
+  title: string;
+  isCollapsed: bool;
+  isChecked: bool;
+  challenges: Challenge[]
+}
+
+Challenge {
+  id: number;
+  description: string;
+  location: any[];
+  icon: string;
+  isChecked: boolean;
+}
+
+Location {
+  name: string;
+  location: any[];
+}

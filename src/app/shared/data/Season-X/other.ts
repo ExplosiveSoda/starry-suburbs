@@ -1,6 +1,6 @@
-import { ChallengeTitle } from '../../interfaces/challenge-title';
+import { ChallengeContainer } from '../../interfaces/challenge-container';
 
-export const Other: ChallengeTitle[] = [
+export const Other: ChallengeContainer[] = [
     {
         id: 0,
         title: 'Spawns',
@@ -10,10 +10,19 @@ export const Other: ChallengeTitle[] = [
             {
                 id: 1000,
                 description: 'Hoverboards',
-                location: [
-                    [18141, 4904],
-                    [14760, 6338],
-                    [11915, 4502],
+                locations: [
+                  {
+                    name: 'test1',
+                    location: [18141, 4904]
+                  },
+                  {
+                    name: 'test2',
+                    location: [14760, 6338]
+                  },
+                  {
+                    name: 'test3',
+                    location: [11915, 4502]
+                  }
                 ],
                 icon: '../../../assets/icons/hoverboard.png',
                 isChecked: false

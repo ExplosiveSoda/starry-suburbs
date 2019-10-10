@@ -1,6 +1,6 @@
 import { Challenge } from './challenge';
 
-export interface ChallengeTitle {
+export interface ChallengeContainer {
   id: number;
   title: string;
   isCollapsed: boolean;

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as L from 'leaflet';
 import { Title } from '@angular/platform-browser';
 import { POI } from 'src/app/shared/data/poi';
-import { ChallengeTitle } from 'src/app/shared/interfaces/challenge-title';
+import { ChallengeContainer } from 'src/app/shared/interfaces/challenge-container';
 // import { latLng, tileLayer, imageOverlay, latLngBounds } from 'leaflet';
 
 @Component({
@@ -12,8 +12,8 @@ import { ChallengeTitle } from 'src/app/shared/interfaces/challenge-title';
 })
 export class MapComponent implements OnInit {
   @Input() sidenavToggle: boolean;
-  @Input() challenges: ChallengeTitle[];
-  @Input() other: ChallengeTitle[];
+  @Input() challenges: ChallengeContainer[];
+  @Input() other: ChallengeContainer[];
   public pois = POI;
   public tempWidth: number;
   public tempHeight: number;
@@ -92,31 +92,31 @@ export class MapComponent implements OnInit {
       })
     );
     const middle = map.getCenter();
-    this.other.forEach(titleChallenge => {
-      if (titleChallenge.isChecked === true) {
-        titleChallenge.challenges.forEach(item => {
-          if (item.isChecked === true) {
-            item.location.forEach(location => {
-              const iconConst = L.icon({
-                iconUrl: item.icon,
-                iconAnchor: [0, 0],
-                iconSize: [500, 500]
-              });
-              const marker = L.marker(location, {
-                icon: iconConst
-              });
-              marker.bindTooltip('hoverboard', {
-                permanent: true,
-                direction: 'center',
-                className: 'my-labels',
-                offset: [0, 0]
-              }).openTooltip();
-              marker.addTo(map);
-            });
-          }
-        });
-      }
-    });
+    // this.other.forEach(titleChallenge => {
+    //   if (titleChallenge.isChecked === true) {
+    //     titleChallenge.challenges.forEach(item => {
+    //       if (item.isChecked === true) {
+    //         item.location.forEach(location => {
+    //           const iconConst = L.icon({
+    //             iconUrl: item.icon,
+    //             iconAnchor: [0, 0],
+    //             iconSize: [500, 500]
+    //           });
+    //           const marker = L.marker(location, {
+    //             icon: iconConst
+    //           });
+    //           marker.bindTooltip('hoverboard', {
+    //             permanent: true,
+    //             direction: 'center',
+    //             className: 'my-labels',
+    //             offset: [0, 0]
+    //           }).openTooltip();
+    //           marker.addTo(map);
+    //         });
+    //       }
+    //     });
+    //   }
+    // });
     this.pois.forEach(poi => {
       const poiIcon = L.icon({
         iconUrl: '../../../assets/images/leaf-green.png',

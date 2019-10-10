@@ -1,7 +1,7 @@
 import { LatLngExpression } from 'leaflet';
-import { ChallengeTitle } from '../../interfaces/challenge-title';
+import { ChallengeContainer } from '../../interfaces/challenge-container';
 
-export const SeasonX: ChallengeTitle[] = [
+export const SeasonX: ChallengeContainer[] = [
   {
     id: 0,
     title: 'Week 1',
@@ -11,10 +11,19 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1000,
         description: 'Do this week 1',
-        location: [
-          [15000, 6986],
-          [17000, 6986],
-          [19000, 6986],
+        locations: [
+          {
+            name: 'testt1',
+            location: [15000, 6986]
+          },
+          {
+            name: 'testt2',
+            location: [17000, 6986]
+          },
+          {
+            name: 'testt3',
+            location: [19000, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -22,8 +31,11 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1001,
         description: 'Do that week 1',
-        location: [
-          [10008, 6986]
+        locations: [
+          {
+            name: 'testing1',
+            location: [10008, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -31,8 +43,11 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1002,
         description: 'Now do this again week 1',
-        location: [
-          [5000, 6986]
+        locations: [
+          {
+            name: 'testing2',
+            location: [5000, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -48,10 +63,19 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1003,
         description: 'Do this week 2',
-        location: [
-          [15000, 6986],
-          [17000, 6986],
-          [19000, 6986],
+        locations: [
+          {
+            name: 'testt1',
+            location: [15000, 6986]
+          },
+          {
+            name: 'testt2',
+            location: [17000, 6986]
+          },
+          {
+            name: 'testt3',
+            location: [19000, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -59,8 +83,11 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1004,
         description: 'Do that week 2',
-        location: [
-          [10008, 6986]
+        locations: [
+          {
+            name: 'testing1',
+            location: [10008, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -68,8 +95,11 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1005,
         description: 'Now do this again week 2',
-        location: [
-          [5000, 6986]
+        locations: [
+          {
+            name: 'testing2',
+            location: [5000, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -85,10 +115,19 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1006,
         description: 'Do this week 3',
-        location: [
-          [15000, 6986],
-          [17000, 6986],
-          [19000, 6986],
+        locations: [
+          {
+            name: 'testt1',
+            location: [15000, 6986]
+          },
+          {
+            name: 'testt2',
+            location: [17000, 6986]
+          },
+          {
+            name: 'testt3',
+            location: [19000, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -96,8 +135,11 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1007,
         description: 'Do that week 3',
-        location: [
-          [10008, 6986]
+        locations: [
+          {
+            name: 'testing1',
+            location: [10008, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
@@ -105,8 +147,11 @@ export const SeasonX: ChallengeTitle[] = [
       {
         id: 1008,
         description: 'Now do this again week 3',
-        location: [
-          [5000, 6986]
+        locations: [
+          {
+            name: 'testing2',
+            location: [5000, 6986]
+          }
         ],
         icon: 'iamge',
         isChecked: false
